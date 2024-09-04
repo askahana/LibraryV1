@@ -1,0 +1,79 @@
+﻿@page "/delete/{id:int}"
+@inject ILibraryService _service
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+@if (book != null)
+{
+    <EditForm Model="book" FormName="formDelete" OnValidSubmit="Submit">
+        <InputNumber @bind-Value="book.Id" hidden></InputNumber>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Title</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="book.Title" class="form-control" readonly></InputText>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Author</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="book.Author" class="form-control" readonly></InputText>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Availability</label>
+            </div>
+            <div class="col-6">
+                <InputCheckbox @bind-Value="book.IsAvailable" class="form-check-input" disabled></InputCheckbox>
+            </div>
+        </div>
+        <br />
+        <button class="btn btn-outline-danger" type="submit">Delete</button>
+
+    </EditForm>
+
+    <GoBack></GoBack>
+
+}
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [SupplyParameterFromForm]
+    private BookDto book { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var response = await _service.GetBookById<ResponseDTO>(Id);
+        if (response != null && response.IsSuccess)
+        {
+            book ??= JsonConvert.DeserializeObject<BookDto>
+            (Convert.ToString(response.Result));
+        }
+    }
+
+    private async Task Submit()
+    {
+        if(book != null)
+        {
+            Console.WriteLine($"Attempting to delete book with ID: {book.Id}");
+            var response = await _service.DeleteBookAsync<ResponseDTO>(book.Id);
+            if(response != null && response.IsSuccess)
+            {
+                Console.WriteLine("Delete successful. Attempting to navigate to home page.");
+                
+                NavigationManager.NavigateTo("/");
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete");
+            }
+        }
+    }
+
+}

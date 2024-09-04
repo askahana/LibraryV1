@@ -1,0 +1,94 @@
+﻿@page "/"
+
+@inject ILibraryService _liberaryService
+
+<PageTitle>BookList</PageTitle>
+
+<h1 class="text-center">Mini mini Library system</h1>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-info bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-black">Book List</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6 text-end">
+                <a class="btn btn-outline-warning" href="/add">
+                    <i class="bi bi-plus-square"></i>&nbsp;&nbsp;Register New Book
+                </a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Book Id</th>
+                    <th>Book Title</th>
+                    <th>Availability</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (books is not null)
+                {
+                    @foreach (var item in books)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td>@(item.IsAvailable ? "Available" : "On loan")</td>
+                            <td>
+
+                                <a class="btn btn-outline-success" href="/details/@item.Id">
+                                    <i class="bi bi-zoom-in"></i>&nbsp;Details
+                                </a>&nbsp;&nbsp;
+                                <a class="btn btn-outline-danger" href="/delete/@item.Id"><i class="bi bi-trash"></i>&nbsp;Delete</a>
+                                &nbsp;&nbsp;
+                                <a class="btn btn-outline-dark" href="/edit/@item.Id">
+                                    <i class="bi bi-pencil-square"></i>&nbsp;Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@code {
+    List<BookDto> books;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await _liberaryService.GetAllBook<ResponseDTO>();
+        if (response != null && response.IsSuccess)
+        {
+            books = JsonConvert.DeserializeObject
+            <List<BookDto>>(Convert.ToString(response.Result));
+        }
+    }
+
+    // protected override void OnInitialized()
+    // {
+    //     books = new List<BookDto>
+    //     {
+    //         new BookDto
+    //         {
+    //             Id = 1,
+    //             Title="Hej",
+    //             Author="Hej",
+    //             IsAvailable = true,
+    //             Description="hej",
+    //             Genre = Genre.ScienceFiction,
+    //         }
+
+    //     };
+    // }
+
+}

@@ -1,0 +1,76 @@
+﻿@page "/details/{Id:int}"
+@inject ILibraryService _libraryService
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-info bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-black">Coupon Details</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Book Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Availability</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @if(book is not null)
+                    {
+                        
+                  
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@(book.IsAvailable ? "Available" : "On loan")</td>
+                        <td></td>
+                    }
+                    else
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+</div>
+
+<GoBack></GoBack>
+
+@code {
+    BookDto book = new BookDto();
+
+    
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await _libraryService.GetBookById<ResponseDTO>(Id);
+        if (response != null && response.IsSuccess)
+        {
+            book = JsonConvert.DeserializeObject
+            <BookDto>(Convert.ToString(response.Result));
+        }
+    }
+}
