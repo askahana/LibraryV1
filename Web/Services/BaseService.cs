@@ -58,8 +58,7 @@ namespace Web.Services
                         message.Method = HttpMethod.Delete;
                         break;
                     default:
-                        message.Method = HttpMethod.Get;
-                        break;
+                        throw new NotImplementedException($"HTTP method {apiRequest.ApiType} not supported.");
                 }
                 apiResponse = await client.SendAsync(message);
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();

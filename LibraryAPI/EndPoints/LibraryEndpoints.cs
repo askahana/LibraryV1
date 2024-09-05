@@ -98,7 +98,7 @@ namespace LibraryAPI.EndPoints
             response.Result = bookToRemove;
             response.IsSuccess = true;
             response.StatusCode = HttpStatusCode.NoContent;
-            return Results.NoContent();
+            return Results.Ok(response);
         }
 
         public async static Task<IResult> UpdateBook(

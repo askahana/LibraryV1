@@ -66,14 +66,55 @@
             if(response != null && response.IsSuccess)
             {
                 Console.WriteLine("Delete successful. Attempting to navigate to home page.");
-                
-                NavigationManager.NavigateTo("/");
+
+                NavigationManager.NavigateTo("/", forceLoad: true);
             }
             else
             {
                 Console.WriteLine("Failed to delete");
             }
         }
+        // if (book != null)
+        // {
+        //     Console.WriteLine($"Attempting to delete book with ID: {book.Id}");
+        //     try
+        //     {
+        //         var response = await _service.DeleteBookAsync<ResponseDTO>(book.Id);
+        //         if (response != null)
+        //         {
+        //             Console.WriteLine($"Delete response received. IsSuccess: {response.IsSuccess}");
+        //             if (response.IsSuccess)
+        //             {
+        //                 Console.WriteLine("Delete successful. Navigating to home page.");
+        //                 NavigationManager.NavigateTo("/", forceLoad: true);
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine($"Delete failed. Error messages: {string.Join(", ", response.ErrorMessages ?? new List<string>())}");
+        //             }
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("Response is null, but delete might have succeeded. Checking book existence...");
+        //             var checkResponse = await _service.GetBookById<ResponseDTO>(book.Id);
+        //             if (checkResponse == null || !checkResponse.IsSuccess)
+        //             {
+        //                 Console.WriteLine("Book no longer exists. Assuming delete was successful.");
+        //                 NavigationManager.NavigateTo("/", forceLoad: true);
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine("Book still exists. Delete operation status unclear.");
+        //             }
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine($"Exception occurred during delete: {ex.Message}");
+        //     }
+        // }
+
+
     }
 
 }
