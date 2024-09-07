@@ -15,6 +15,7 @@
              </div>
              <div class="col-6">
                  <InputText @bind-Value="book.Title" class="form-control"></InputText>
+                <ValidationMessage For="() => book.Title" TValue="string"></ValidationMessage>
              </div>
         </div>
         <div class="row mb-3">
@@ -23,6 +24,7 @@
             </div>
             <div class="col-6">
                 <InputText @bind-Value="book.Author" class="form-control"></InputText>
+                <ValidationMessage For="() => book.Author" TValue="string"></ValidationMessage>
             </div>
         </div>
         <div class="row mb-3">

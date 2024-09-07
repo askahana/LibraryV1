@@ -10,8 +10,10 @@ namespace Shared.Models.Dtos
     public class BookDto
     {
         public int Id { get; set; }
-       
+
+        [Required]
         public string Author { get; set; }
+        [Required]
         public string Title { get; set; }
         public Genre Genre { get; set; }
         public int PublishedYear { get; set; }

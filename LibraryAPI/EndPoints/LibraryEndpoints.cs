@@ -75,6 +75,7 @@ namespace LibraryAPI.EndPoints
             response.Result = book;
             response.IsSuccess = true;
             response.StatusCode = HttpStatusCode.Created;
+            ////return Results.Ok(response);
             return Results.CreatedAtRoute("GetById", new { id = book.Id}, response);
 
         } 
@@ -113,9 +114,14 @@ namespace LibraryAPI.EndPoints
             await _repo.UpdateAsync(_mapper.Map<Book>(book_u_Dto));
             await _repo.SaveAsync();
 
-            // You change Book-type to BookUpdateDto-type here.
-            response.Result = _mapper.Map<BookUpdateDto>
+            // You change Book-type to BookDto-type here.
+
+            response.Result = _mapper.Map<BookDto>
                 (await _repo.GetByIdAsync(book_u_Dto.Id));
+
+            // Book book = await _repo.GetByIdAsync(book_u_Dto.Id);
+            // BookDto book_d = _mapper.Map<BookDto>(book);
+            //response.Result = book_d;
 
             response.IsSuccess = true;
             response.StatusCode = HttpStatusCode.OK;

@@ -453,6 +453,9 @@ button, input, optgroup, select, textarea {
     font-size: inherit;
     line-height: inherit
 }
+.input-focus {
+    border-color: lightpink;
+}
 
 button, select {
     text-transform: none
