@@ -25,7 +25,11 @@ namespace LibraryAPI
             options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
             builder.Services.AddAutoMapper(typeof(MappingConfig));
-
+            builder.Services.AddCors((setup) =>
+            setup.AddPolicy("default", (options) =>
+            {
+                options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+            }));
 
             var app = builder.Build();
 
@@ -39,6 +43,8 @@ namespace LibraryAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors("default");
 
             app.ConfigurationLibraryEndpoints();
 

@@ -29,6 +29,35 @@
         </div>
         <div class="row mb-3">
             <div class="col-2">
+                <label class="col-form-label">PublishedYear</label>
+            </div>
+            <div class="col-6">
+                <InputNumber @bind-Value="book.PublishedYear" class="form-control"></InputNumber>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Description</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="book.Description" class="form-control" placeholder="Description"></InputText>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Genre</label>
+            </div>
+            <div class="col-6">
+                <InputSelect @bind-Value="book.Genre" class="form-control">
+                    @foreach (var genre in Enum.GetValues(typeof(Genre)).Cast<Genre>())
+                    {
+                        <option value="@genre">@genre</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
                 <label class="col-form-label">Availability</label>
             </div>
             <div class="col-6">

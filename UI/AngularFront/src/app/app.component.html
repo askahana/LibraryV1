@@ -1,17 +1,35 @@
 <div class="flex h-screen">
   <div class="container">
   <header>
-    <div class="navbar flex justify-center">
-      <ul class="text-decoration-none">
-        <li class="text-decoration-none">show all books</li>
-        <li>hej</li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-dark bg-success navbar-expand-lg py-md-2 ps-5">
+      <a class="navbar-brand d-flex align-items-center" href="#"><i class="fa-solid fa-house-chimney me-3" ></i><h4 class="mb-0">MiniminiLibrary</h4></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto ps-5">
+              <li class="nav-item py-md-2"><a href="/booklist" class="nav-link">ShowAllBooks</a></li>
+              <li class="nav-item py-md-2 me-4"><a href="#" class="nav-link"><i class="fa-regular fa-pen-to-square me-2"></i>RegisterNew</a></li>
+          </ul>
+      </div>
+  </nav>
   </header>
 </div>
-  <body>
-    
-  </body>
+
+ 
 
 
+
+<div class="content">
+  <router-outlet></router-outlet>
 </div>
+  <footer class="text-center">&copy;2024♡MiniLibrary</footer>
+
+  
+
+
+
+
+
+
+

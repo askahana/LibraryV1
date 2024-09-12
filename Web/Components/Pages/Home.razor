@@ -16,7 +16,7 @@
     </div>
     <div class="card-body p-4">
         <div class="row pb-3">
-            <div class="col-6 text-end">
+            <div class="col-12 text-end">
                 <a class="btn btn-outline-warning" href="/add">
                     <i class="bi bi-plus-square"></i>&nbsp;&nbsp;Register New Book
                 </a>
@@ -25,10 +25,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Book Id</th>
+                   @*  <th>Book Id</th> *@
                     <th>Book Title</th>
+                    <th>Genre</th>
                     <th>Availability</th>
-                    <th></th>
+                    <th>Other functions</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,8 +38,9 @@
                     @foreach (var item in books)
                     {
                         <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Title</td>
+                           @*  <td class="col-1">@item.Id</td> *@
+                            <td class="col-4">@item.Title</td>
+                            <td>@item.Genre</td>
                             <td>@(item.IsAvailable ? "Available" : "On loan")</td>
                             <td>
 

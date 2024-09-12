@@ -18,11 +18,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Book Id</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Availability</th>
+                    <th class="col-1">Book Id</th>
+                    <th class="col-3">Title</th>
+                    <th class="col-3">Author</th>
+                    <th class="col-2">Genre</th>
+                    <th class="col-3">Description</th>
+                    <th class="col-2">Availability</th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,11 +33,12 @@
                     {
                         
                   
-                    <td>@book.Id</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.Genre</td>
-                    <td>@(book.IsAvailable ? "Available" : "On loan")</td>
+                        <td class="col-1">@book.Id</td>
+                        <td class="col-3">@book.Title</td>
+                        <td class="col-3">@book.Author</td>
+                        <td class="col-2">@book.Genre</td>
+                        <td class="col-3">@book.Description</td>
+                        <td class="col-2">@(book.IsAvailable ? "Available" : "On loan")</td>
                         <td></td>
                     }
                     else
