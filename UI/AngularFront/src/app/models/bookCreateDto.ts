@@ -1,7 +1,6 @@
 import { Genre } from "./genre.enum";
 
-export interface BookDto{
-    id: number;
+export interface BookCreateDto{
     title: string;
     author:string;
     description:string;

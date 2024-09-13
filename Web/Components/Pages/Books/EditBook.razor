@@ -33,6 +33,7 @@
             </div>
             <div class="col-6">
                 <InputNumber @bind-Value="book.PublishedYear" class="form-control"></InputNumber>
+                <ValidationMessage For="() => book.PublishedYear" TValue="int"></ValidationMessage>
             </div>
         </div>
         <div class="row mb-3">

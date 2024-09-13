@@ -1,38 +1,52 @@
-<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center">
-    <button class="btn btn-lg btn-dark mt-3 text-end">
-      Create New Post
-    </button>
-  
+<div class="container min-vh-100 justify-content-center align-items-center">
+
     <div class="mh-500px w-100 overflow-auto d-inline-block mt-5 shadow">
-      <table class="table table-striped">
+      <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
+         <!-- <th scope="col">ID</th>-->  
+            <th scope="col" class="ps-2">Title</th>
+            <th scope="col">Author</th>
             <th scope="col">Published</th>
-            <th scope="col">Actions</th>
+            <th scope="col" class="text-center">Other services</th>
           </tr>
         </thead>
         <tbody>
         <tr *ngFor="let book of books; index as i">
-          <th scope="row">{{ book.id }}</th>
-          <td>{{ book.title }}</td>
+       <!--   <th scope="row">{{ book.id }}</th>-->
+          <td  class="ps-2">{{ book.title }}</td>
           <td>{{ book.author }}</td>
           <td>{{ book.publishedYear }}</td>
-          <td>
-            <button class="btn btn-lg btn-outline-danger" (click)="getsingelbook(book.id)">
+          <td class="">
+            <button class="btn btn-lg btn-outline-success me-3" (click)="getsingelbook(book.id)">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 Show Details
               </button>
-            <button class="btn btn-lg btn-outline-dark me-3">
+            <button class="btn btn-lg btn-outline-dark me-3" (click)="goedit(book.id)">
               <i class="fa-solid fa-arrows-rotate"></i>
               Update
             </button>
-            <button class="btn btn-lg btn-outline-danger">
+            <button class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
               <i class="fa-solid fa-trash-can"></i>
               Delete
             </button>
+            <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete the book "{{book.title}}"?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="deleteBook(book.id)">Yes, Delete!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
           </td>
         </tr>
         </tbody>

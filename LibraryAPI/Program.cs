@@ -3,6 +3,7 @@ using LibraryAPI.Data;
 using LibraryAPI.EndPoints;
 using LibraryAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace LibraryAPI
 {
@@ -30,6 +31,12 @@ namespace LibraryAPI
             {
                 options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
             }));
+
+            //builder.Services.AddControllers().AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.Converters
+            //    .Add(new JsonStringEnumConverter());
+            //});
 
             var app = builder.Build();
 

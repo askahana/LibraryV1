@@ -2,8 +2,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LibraryService } from './services/library.service';
-import { Book, Genre } from './models/book.model';
 import { CommonModule } from '@angular/common';
+import { BookDto } from './models/bookDto';
+import { Genre } from './models/genre.enum';
 
 @Component({
   selector: 'app-root',
@@ -17,15 +18,15 @@ export class AppComponent {
   http = inject(HttpClient);
   libraryService = inject(LibraryService);
 
-  books: Book[] = [];
-  book: Book ={
+  books: BookDto[] = [];
+  book: BookDto ={
     id: 0,
     title: '',
     author:'',
     description:'',
     publishedYear: 0,
     isAvailable: false,
-    genre:Genre.Children,
+    genre: Genre.Children,
 };
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

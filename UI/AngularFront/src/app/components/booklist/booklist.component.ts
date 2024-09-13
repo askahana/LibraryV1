@@ -1,9 +1,10 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { LibraryService } from '../../services/library.service';
-import { BookDto, Genre } from '../../models/bookDto';
+import { BookDto} from '../../models/bookDto';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Genre } from '../../models/genre.enum';
 
 @Component({
   selector: 'app-booklist',
@@ -37,6 +38,16 @@ export class BooklistComponent {
    getsingelbook(id:number){
     console.log(id);
     this.router.navigateByUrl('/details/'+ id);
-   
+      }
+
+      deleteBook(id:number){
+        console.log(id);
+        this.libraryService.deleteBook(id).subscribe(
+         response => this.getAllBooks()
+        );
+      }
+      goedit(id:number){
+        console.log(id);
+        this.router.navigateByUrl('/edit/'+id);
       }
 }

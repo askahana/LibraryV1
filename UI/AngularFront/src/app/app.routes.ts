@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { BooklistComponent } from './components/booklist/booklist.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { HomeComponent } from './components/home/home.component';
+import { BookformComponent } from './components/bookform/bookform.component';
+
 
 export const routes: Routes = [
  {
@@ -16,8 +18,16 @@ component: HomeComponent
     {
         path: 'details/:id',
         component: DetailComponent
+    },
+    {
+        path:'register',
+        component: BookformComponent
+    },
+    {
+        path:'edit/:id',
+        component:BookformComponent
     }
-
+   
 
 
 
