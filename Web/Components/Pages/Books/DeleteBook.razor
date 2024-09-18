@@ -4,7 +4,16 @@
 @rendermode InteractiveServer
 
 @if (book != null)
-{
+{<div class="d-flex justify-content-center">
+<div class="card shadow border-0 mt-4" style="width: 40rem;">
+    <div class="card-header bg-warning-subtle ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-black">Delete book</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
     <EditForm Model="book" FormName="formDelete" OnValidSubmit="Submit">
         <InputNumber @bind-Value="book.Id" hidden></InputNumber>
         <div class="row mb-3">
@@ -35,7 +44,9 @@
         <button class="btn btn-outline-danger" type="submit">Delete</button>
 
     </EditForm>
-
+   </div>
+    </div>
+    </div>
     <GoBack></GoBack>
 
 }
@@ -66,7 +77,7 @@
             {
                 Console.WriteLine("Delete successful. Attempting to navigate to home page.");
 
-                NavigationManager.NavigateTo("/", forceLoad: true);
+                NavigationManager.NavigateTo("/booklist", forceLoad: true);
             }
             else
             {

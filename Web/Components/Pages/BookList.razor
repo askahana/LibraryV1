@@ -4,7 +4,7 @@
 
 <PageTitle>BookList</PageTitle>
 
-<div class="card shadow border-0 mt-4">
+<div class="card shadow border-0 mt-4 " >
     <div class="card-header bg-danger-subtle ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
@@ -40,7 +40,7 @@
                             <td class="col-4">@item.Title</td>
                             <td>@item.Genre</td>
                             <td>@(item.IsAvailable ? "Available" : "On loan")</td>
-                            <td>
+                            <td class="col-4">
 
                                 <a class="btn btn-outline-success" href="/details/@item.Id">
                                     <i class="bi bi-zoom-in"></i>&nbsp;Details

@@ -5,50 +5,60 @@
 
 @if(book != null)
 {
+    <div class="d-flex justify-content-center">
+<div class="card shadow border-0 mt-4" style="width: 40rem;">
+    <div class="card-header bg-primary-subtle ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-black">Edit the book</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
     <EditForm Model="book" FormName ="formBook" OnValidSubmit="Submit">
         <InputNumber @bind-Value="book.Id" hidden></InputNumber>
         <DataAnnotationsValidator></DataAnnotationsValidator>
         <ValidationSummary></ValidationSummary>
         <div class="row mb-3">
-             <div class="col-2">
+             <div class="col-2 ms-5">
                  <label class="col-form-label">Title</label>
              </div>
-             <div class="col-6">
+             <div class="col-6 ms-5">
                  <InputText @bind-Value="book.Title" class="form-control"></InputText>
                 <ValidationMessage For="() => book.Title" TValue="string"></ValidationMessage>
              </div>
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-2 ms-5">
                 <label class="col-form-label">Author</label>
             </div>
-            <div class="col-6">
+            <div class="col-6 ms-5">
                 <InputText @bind-Value="book.Author" class="form-control"></InputText>
                 <ValidationMessage For="() => book.Author" TValue="string"></ValidationMessage>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-2 ms-5">
                 <label class="col-form-label">PublishedYear</label>
             </div>
-            <div class="col-6">
+            <div class="col-6 ms-5">
                 <InputNumber @bind-Value="book.PublishedYear" class="form-control"></InputNumber>
                 <ValidationMessage For="() => book.PublishedYear" TValue="int"></ValidationMessage>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-2 ms-5">
                 <label class="col-form-label">Description</label>
             </div>
-            <div class="col-6">
+            <div class="col-6 ms-5">
                 <InputText @bind-Value="book.Description" class="form-control" placeholder="Description"></InputText>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-2 ms-5">
                 <label class="col-form-label">Genre</label>
             </div>
-            <div class="col-6">
+            <div class="col-6 ms-5">
                 <InputSelect @bind-Value="book.Genre" class="form-control">
                     @foreach (var genre in Enum.GetValues(typeof(Genre)).Cast<Genre>())
                     {
@@ -58,18 +68,20 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-2 ms-5">
                 <label class="col-form-label">Availability</label>
             </div>
-            <div class="col-6">
+            <div class="col-6 ms-5">
                 <InputCheckbox @bind-Value="book.IsAvailable" class="form-check-input"></InputCheckbox>
             </div>
         </div>
         <br/>
-        <button class="btn btn-outline-success" type="submit" >Update</button>
+        <button class="btn btn-outline-success ms-5" type="submit" >Update</button>
 
     </EditForm>
-
+    </div>
+     </div>
+    </div>
     <GoBack></GoBack>
 
 }
@@ -112,7 +124,7 @@
             var response = await _libraryService.UpdateBookAsync<ResponseDTO>(book);
             if (response != null && response.IsSuccess)
             {
-                NavigationManager.NavigateTo("/");
+                NavigationManager.NavigateTo("/booklist");
             }
             else
             {

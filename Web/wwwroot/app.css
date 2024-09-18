@@ -1,7 +1,9 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    width: 100%;
 }
-
 
 a, .btn-link {
     color: #006bb7;
@@ -51,4 +53,7 @@ h1:focus {
     border-color: #929292;
 }
 
+fotter{
+    margin-top:10px;
+}
 

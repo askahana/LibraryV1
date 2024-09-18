@@ -1,0 +1,21 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+
+<form class="d-flex">
+    <input class="form-control me-2"
+           type="text"
+           placeholder="Search" @bind="searchword"
+           >
+    <button class="btn btn-dark" type="button" @onclick="Search">Search</button>
+</form>
+@code {
+
+    [Parameter]
+    public string searchword { get; set; }
+
+    private void Search()
+    {
+        NavigationManager.NavigateTo($"/search/{searchword}");
+    }
+}

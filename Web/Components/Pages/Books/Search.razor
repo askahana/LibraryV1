@@ -1,0 +1,91 @@
+﻿@page "/search/{keyword}"
+@inject ILibraryService _libraryService
+@rendermode InteractiveServer
+
+<h2 class="mb-5">Result with serachword "@keyword"</h2>
+
+@if (searchedBooks != null && searchedBooks.Any())
+{ <div class="container">
+                <div class="row">
+    
+        @foreach (var book in searchedBooks)
+        {
+           
+        <div class="col-md-4 mb-3">
+            <div class="card shadow overflow-hidden" style="width: 18rem; height:40rem;" >
+                @*   <a href="#" class="card-link"></a> *@
+                <img src="@($"/images/book{book.Id}.jpg")"
+                     class="card-img-top" alt="book image"
+                     style="width:18rem; height:25rem;"
+                     onerror="this.onerror=null;this.src='/images/no-image.png';">
+                <div class="card-body text-left">
+                    <table class="table">
+                        <tr>
+                            <th scope="row">Titel</th>
+                            <td>@book.Title</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Author</th>
+                            <td>@book.Author</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Genre</th>
+                            <td>@book.Genre</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Published</th>
+                            <td>@book.PublishedYear</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@book.Description</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Availability</th>
+                            <td>@(book.IsAvailable ? "Available" : "On loan")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+           
+      
+            
+        }
+        </div>
+    </div>
+}
+else
+{
+    <p>No books found.</p>
+}
+
+
+@code {
+    List<BookDto> books;
+    List<BookDto> searchedBooks;
+
+    [Parameter]
+    public string keyword { get; set; } = "pippi";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await _libraryService.GetAllBook<ResponseDTO>();
+        if (response != null && response.IsSuccess)
+        {
+            books = JsonConvert.DeserializeObject
+            <List<BookDto>>(Convert.ToString(response.Result));
+        }
+        await SearchBooks();
+    }
+
+    private async Task SearchBooks()
+    {
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            searchedBooks = books.Where
+       (b => b.Author.ToLower().Contains(keyword.ToLower()) ||
+       b.Title.ToLower().Contains(keyword.ToLower())).ToList();
+        }
+    }
+}

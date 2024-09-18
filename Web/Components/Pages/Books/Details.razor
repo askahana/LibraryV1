@@ -2,8 +2,48 @@
 @inject ILibraryService _libraryService
 
 
-<div class="card shadow border-0 mt-4">
-    <div class="card-header bg-danger-subtle ml-0 py-3">
+@if (book is not null)
+{
+    <div class="d-flex justify-content-center">
+    <div class="card shadow " style="width: 20rem;">
+        @*   <a href="#" class="card-link"></a> *@
+        <img src="@($"/images/book{Id}.jpg")"
+             class="card-img-top" alt="book image"
+             onerror="this.onerror=null;this.src='/images/no-image.png';">
+        <div class="card-body text-left">
+            <table class="table">
+                <tr>
+                    <th scope="row">Titel</th>
+                    <td>@book.Title</td>
+                </tr>
+                <tr>
+                    <th scope="row">Author</th>
+                    <td>@book.Author</td>
+                </tr>
+                <tr>
+                    <th scope="row">Genre</th>
+                    <td>@book.Genre</td>
+                </tr>
+                <tr>
+                    <th scope="row">Published</th>
+                    <td>@book.PublishedYear</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>@book.Description</td>
+                </tr>
+                    <tr>
+                        <th scope="row">Availability</th>
+                        <td>@(book.IsAvailable ? "Available" : "On loan")</td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+}
+
+@* <div class="card shadow border-0 mt-4">
+    <div class="card-header bg-success-subtle ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center ">
                 <h1 class="text-black">Coupon Details</h1>
@@ -29,7 +69,7 @@
             </thead>
             <tbody>
                 <tr>
-                    @if(book is not null)
+                    @if (book is not null)
                     {
                         <td class="col-1">@book.Id</td>
                         <td class="col-3">@book.Title</td>
@@ -53,14 +93,14 @@
 
     </div>
 
-</div>
+</div> *@
 
 <GoBack></GoBack>
 
 @code {
     BookDto book = new BookDto();
 
-    
+
     [Parameter]
     public int Id { get; set; }
 
