@@ -17,7 +17,7 @@
                 <div class="mb-2 form-group">
                     <label for="genre" class="form-label">Book Genre</label>
                     <select class="form-control" formControlName="genre">
-                        <option *ngFor="let sort of genre">
+                        <option *ngFor="let sort of genreOptions" [value]="sort">
                             {{sort}}
                         </option>
                     </select>

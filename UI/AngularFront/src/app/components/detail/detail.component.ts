@@ -29,7 +29,7 @@ export class DetailComponent {
     description:'',
     publishedYear: 0,
     isAvailable: false,
-    genre:0,
+    genre:Genre.Comedy,
 };
 
 
@@ -48,8 +48,14 @@ ngOnInit(): void {
 getSingelBook(id:number) {
   this.libraryService.getOneBook(id).subscribe(response => 
     {this.book = response
-      this.image = `assets/images/book${id}.jpg` || 'assets/images/no-image.png' ;
+     /* if(!`assets/images/book${id}.jpg`){
+        this.image = 'assets/images/no-image.png' ;
+      }
+      this.image = `assets/images/book${id}.jpg`;*/
+      this.image = id ? `assets/images/book${id}.jpg` : 'assets/images/no-image.png';
      
+      // <img [src]="`assets/images/book${id}.jpg`" (error)="this.src='assets/images/no-image.png'" alt="Book Image">
+      // this.image = `assets/images/book${id}.jpg`;
       console.log(this.book.genre);
   });
  }
@@ -83,5 +89,5 @@ getSingelBook(id:number) {
   }
  }
 
- 
+
 }

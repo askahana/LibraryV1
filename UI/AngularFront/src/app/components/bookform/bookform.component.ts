@@ -3,13 +3,14 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { LibraryService } from '../../services/library.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookDto} from '../../models/bookDto';
-import { Genre } from '../../models/genre.enum';
+import { Genre, GenreValues } from '../../models/genre.enum';
 import { BookCreateDto } from '../../models/bookCreateDto';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bookform',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './bookform.component.html',
   styleUrl: './bookform.component.css'
 })
@@ -21,15 +22,18 @@ export class BookformComponent {
  
   isEdit = false;
 
+ // genreKeys: number[] = Object.values(Genre).filter(value => typeof value === 'number') as number[];
+
   registerForm = this.formBuilder.group({
     title: ['', [Validators.required]],
     author:['', [Validators.required]],
     description:['', [Validators.required]],
     publishedYear: [0, [Validators.required]],
     isAvailable: [false],
-    genre:[0, [Validators.required]]
+    genre:[Genre.Children, [Validators.required]]
   })
 
+  genreOptions = GenreValues;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -41,7 +45,7 @@ export class BookformComponent {
     description:['', [Validators.required]],
     publishedYear: [0, [Validators.required]],
     isAvailable: [false],
-    genre:[0, [Validators.required]]
+    genre:[Genre.Children, [Validators.required]]
   })
   }
 
@@ -65,9 +69,11 @@ export class BookformComponent {
 
   }
 
+  /*getGenre():string{
+    return this.genreToString(this.book.genre);
+   }*/
 
-
-  private genreToString(genre: Genre): string {
+  genreToString(genre: Genre): string {
     switch (genre) {
       case Genre.Mystery:
         return 'Mystery';
