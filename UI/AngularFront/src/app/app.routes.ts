@@ -3,6 +3,8 @@ import { BooklistComponent } from './components/booklist/booklist.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { HomeComponent } from './components/home/home.component';
 import { BookformComponent } from './components/bookform/bookform.component';
+import { RegisterComponent } from './components/register/register.component';
+import { EditComponent } from './components/edit/edit.component';
 
 
 export const routes: Routes = [
@@ -20,12 +22,17 @@ component: HomeComponent
         component: DetailComponent
     },
     {
-        path:'register',
+        path: 'form',
         component: BookformComponent
     },
+ 
     {
         path:'edit/:id',
-        component:BookformComponent
+        component:EditComponent
+    },
+    {
+        path:'register',
+        component:RegisterComponent
     }
    
 

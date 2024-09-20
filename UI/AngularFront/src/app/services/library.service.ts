@@ -1,5 +1,5 @@
 
-import { inject, Inject, Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 
 import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -50,16 +50,15 @@ export class LibraryService{
     )
 }
     
-  
     // update
     uppdateBook(book: BookDto): Observable<BookDto>{
-        return this.http.put<ApiResponse>(this.baseUrl + '/' + book.id, book).pipe(
+        return this.http.put<ApiResponse>(this.baseUrl, book).pipe(
             map((response: ApiResponse) =>
             response.result as BookDto)
         );
     }
 
-    //add new, Create
+    //add new, Create 
     addNewBook(book:BookCreateDto): Observable<BookCreateDto>{
         return this.http.post<ApiResponse>(this.baseUrl, book).pipe(
             map((response: ApiResponse) =>

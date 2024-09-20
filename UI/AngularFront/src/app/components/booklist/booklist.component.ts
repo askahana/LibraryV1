@@ -14,7 +14,7 @@ import { Genre } from '../../models/genre.enum';
   styleUrl: './booklist.component.css'
 })
 export class BooklistComponent {
-  http = inject(HttpClient);
+ http = inject(HttpClient);
   libraryService = inject(LibraryService);
   router= inject(Router);
   books: BookDto[] = [];
