@@ -6,7 +6,8 @@ export enum Genre {
     ScienceFiction = 'ScienceFiction',
     Classics = 'Classics',
     Children = 'Children',
-    Comedy = 'Comedy'
+    Comedy = 'Comedy',
+    Uncategorized = "Uncategorized"
 }
 
 export const GenreValues = Object.values(Genre);

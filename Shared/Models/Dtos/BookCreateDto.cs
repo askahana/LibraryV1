@@ -11,7 +11,7 @@ namespace Shared.Models.Dtos
     {
         public string Author { get; set; }
         public string Title { get; set; }
-        //[JsonConverter(typeof(JsonStringEnumConverter))]
+        
         public Genre Genre { get; set; }
         public int PublishedYear { get; set; }
         public string Description { get; set; }

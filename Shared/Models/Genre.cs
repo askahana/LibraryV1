@@ -16,5 +16,6 @@ namespace Shared.Models
         Classics,
         Children,
         Comedy,
+        Uncategorized
     }
 }

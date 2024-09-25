@@ -43,7 +43,10 @@ export class BooklistComponent {
       deleteBook(id:number){
         console.log(id);
         this.libraryService.deleteBook(id).subscribe(
-         response => this.getAllBooks()
+           response => {
+            this.getAllBooks();
+            
+          }
         );
       }
       goedit(id:number){

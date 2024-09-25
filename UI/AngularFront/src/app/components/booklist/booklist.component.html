@@ -26,12 +26,12 @@
               <i class="fa-solid fa-arrows-rotate"></i>
               Update
             </button>
-            <button class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <button class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteModal' + book.id">
               <i class="fa-solid fa-trash-can"></i>
               Delete
             </button>
             <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade"  [attr.id]="'deleteModal' + book.id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,8 +40,8 @@
       </div>
      
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="deleteBook(book.id)">Yes, Delete!</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteBook(book.id)" #closeModal>Yes, Delete!</button>
       </div>
     </div>
   </div>

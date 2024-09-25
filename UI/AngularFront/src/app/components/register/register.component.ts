@@ -26,7 +26,7 @@ export class RegisterComponent {
     description:['', [Validators.required]],
     publishedYear: [0, [Validators.required]],
     isAvailable: [false],
-    genre:[Genre.Children, [Validators.required]]
+    genre:[Genre.Uncategorized, [Validators.required]]
   })
 
   genreOptions = GenreValues;
@@ -45,6 +45,7 @@ export class RegisterComponent {
 
     this.libraryService.addNewBook(newBook).subscribe(
       response => {
+        console.log(this.registerForm.value);
         this.router.navigateByUrl('/booklist');
       }
     );
